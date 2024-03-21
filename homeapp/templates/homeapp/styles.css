@@ -1,0 +1,54 @@
+body {
+  color: rgba(236, 230, 197, 0.527);
+  font-family: "alice-normal";
+  background-color: rgb(37, 50, 61) ;
+}
+.nav{
+  font-size: 22px;
+  padding: 0;
+  width: 100%;
+}
+.nav_id{
+  display: block;
+  padding: 14px 16px;
+  text-align: center;
+}
+.nav_id input[type=text]{
+  float: right;
+  padding: 2px;
+  font-size: 16px;
+  font-family: "alice-normal";
+}
+.cur_set{
+  padding: 14px;
+  font-size: 20px;
+}
+.cards{
+  font-size: 18px;
+  border-style: solid;
+  border: rgb(207, 192, 192);
+  border-width: 2px;
+}
+.def_row{
+  width: 60%;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+li {
+  float: left;
+}
+table {
+  padding: 14px;
+  width: 50%;
+  text-align: center;
+}
+td, th {
+  padding: 0px;
+}
+tr:nth-child(even) {
+  background-color: #9e81812d;
+}
