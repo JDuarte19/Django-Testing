@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href ="styles.css">
+
+        <title>Demo Set</title>
+    </head>
+
+    <body>
+
+        <div class="nav">
+            <ul>
+            <li><div class="nav_id">BBDawg</div></li>
+            <li><div class="nav_id">Library</div></li>
+            <li><div class="nav_id"><input type="text" placeholder="Seach for Set" name="set_name"></div></li>
+            <li><div class="nav_id">Create</div></li>
+            <li><div class="nav_id">Profile</div></li>
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="set_info">
+            Creation Date: 99/99/9999
+            <div>This set is about... blah... blah... blah...</div>
+            <br>
+            <div>Quickadd Edit Delete</div>
+        </div>
+
+        <table>
+          <form method="post" action="{% url 'homeapp:setpage' set_id %}">
+            {% csrf_token %}
+            <tr>
+              <th>Table Term</th>
+              <th class =  "def_row">Table Definition</th>
+              <th>Action</th>
+            </tr>
+            <tr> 
+              {% for field in form%}
+              <td>{{field}}</td>
+              {% endfor %}
+              <td><button name="save">Save</button></td>
+            </tr>
+            {% if cur_set %}
+            {% for cur_term in cur_set %}
+            <tr>
+              <td>{{ cur_term.term }}</td>
+              <td class =  "def_row">{{ cur_term.termDef }}</td>
+              <td>
+                <button name="edit">Edit</button>
+                <button name="delete">Delete</button></td>
+              </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+              <td>term</td>
+              <td class =  "def_row">def</td>
+            </tr>
+            {% endif %}
+            </form>
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href ="styles.css">
+        <title>Register Account Nerd</title>
+    </head>
+
+    <body>
+        <div class = "menu">
+            <div class = "left_div">
+            </div>  
+            <div>
+                <ul>
+                <li>BBDawg</li>
+                <li>About</li>
+                <li>Library</li>
+                <li><input type="text" placeholder="Seach for Set" name="set_name"></li>
+                <li>Profile</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class = "padded_body">
+            <div class = "border">
+                <form method = "post">
+                    {% csrf_token %}
+                    <div class = "center">
+                        <table>
+                            {for field in form}
+                                {{field}}
+                                {endfor}
+
+
+                            <tr>
+                                <td>Username</td>
+                                <td><input type="text" placeholder="Enter valid Username"></td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td><input type="text" placeholder = "Enter email"></td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td><input type="text" placeholder = "Enter valid password"></td>
+                            </tr>
+                        </table>
+                        <button name="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
