@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+    <link rel="stylesheet" href ="styles.css">
+    <head>
+        <title>Library</title>
+    </head>
+
+    <body>
+        <div class = "menu">
+            <ul>
+                <li class = "menu_list">BBDawg</li>
+                <li class = "menu_list">About</li>
+                <li class = "menu_list">Library</li>
+                <li class = "menu_list"><input type="text" placeholder="Seach for Set" name="set_name"></li>
+                <li class = "menu_list">Profile</li>
+            </ul>
+        </div>
+
+        <div class = "padded_body">
+            <div class = "border">
+                <table>
+                    <form method="post" action="{% url 'homeapp:library' %}">
+                    {% csrf_token %}
+                    <tr><th>Set Name</th></tr>
+                    <tr> 
+                        {% for field in form %}
+                        <td>{{field}}</td>
+                        {% endfor %}
+                        <td><button name="save">Save</button></td>
+                    </tr>
+                    {% if library_list %}
+                    {% for set in library_list %}
+                    <tr>
+                        <td><a href=" {% url 'homeapp:setpage' set.id %} ">{{set.set_name}}</a></td>
+                        <td>
+                            <button formnovalidate name="edit" value="{{set.id}}">Edit</button>
+                            <button formnovalidate name="delete" value="{{set.id}}">Delete</button></td>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </form>
+                </table>
+                {% else %}
+                    <p> No polls are avaiable.</p>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+
+</html>
