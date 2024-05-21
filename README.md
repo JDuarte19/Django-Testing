@@ -1,4 +1,5 @@
 Personal Website that is underdevelopement.
+Back-end uses Python and Django franework. Front-end uses Bootstrap for CSS and Javascript for Html improvement.
 
 python manage.py runserver
 * hosts webserver at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
