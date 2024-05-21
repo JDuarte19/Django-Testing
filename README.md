@@ -6,7 +6,7 @@ python manage.py runserver
 Current working urls can be found in the homeapp/urls.py:
 * home
 * home/register
-  * 
+
 Other working url:
 * admnin/
   * access to all databases
