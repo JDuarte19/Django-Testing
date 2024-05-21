@@ -14,3 +14,7 @@ Class based views
 def home(request):
     x = "home.html"
     return render(request, 'user_act/{}'.format(x))
+
+def register(request):
+    x = "test.html"
+    return render(request, 'user_act/{}'.format(x) )
