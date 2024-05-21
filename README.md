@@ -4,9 +4,9 @@ python manage.py runserver
 * hosts webserver at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 Current working urls can be found in the homeapp/urls.py:
-* homeapp/library
-* homeapp/library/set/int pk
-  * int pk is set for the primary key of the current database being requested
+* home
+* home/register
+  * 
 Other working url:
 * admnin/
   * access to all databases
