@@ -37,7 +37,7 @@
                         <a class="dropdown-item" href="#">Library</a>
                         <a class="dropdown-item" href="#">Admin Panel</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Login/Logout</a>
+                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                     </div>
                     </li>
                 </ul>
@@ -50,47 +50,40 @@
         </nav>
 
         <br>
-
         <div class  = "mx-auto p-2 w-75">
-            <div class ="card">
-                <br>
-                <div class  = "mx-auto p-2 w-50">
-                    <p class="text-center fs-2">Create your account!</p>
-                </div>
-
-                <div class  = "mx-auto p-2 w-50">
-                    <div class  = "shadow p-3 mb-5 bg-secondary rounded">
-                            <form method = "post">
-                            {% csrf_token %}
-                                <fieldset>
-                                        <br>
-                                        <div class="shadow- p-3 mb-5 bg-dark rounded">
-                                            <div class="row justify-content-center">
-                                                <div class="col">Username</div>
-                                                <div class="col"><input type="text" class="form-control form-control-sm" id="username" placeholder="Username..."></div>
-                                            </div>
-                                        </div>
-                                        <div class="shadow p-3 mb-5 bg-dark rounded">
-                                            <div class="row justify-content-center">
-                                                <div class="col">Email</div>
-                                                <div class="col"><input type="email" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="name@example.com"></div>
-                                            </div>
-                                        </div>
-                                        <div class="shadow p-3 mb-5 bg-dark rounded">
-                                            <div class="row justify-content-center">
-                                                <div class="col">Password</div>
-                                                <div class="col"><input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="Password..."></div>
-                                            </div>
-                                        </div>
-                                        <div class="containter text-center">
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-dark">Submit</button>
-                                            </div>
-                                        </div>
-                                </fieldset>
-                            </form>
-                    </div>
-                </div>
+            <div class ="text-center">
+                <table class="table">
+                    <form method="post" action = "">
+                    {% csrf_token %}
+                    <thead>
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">User address</th>
+                            <th scope="col">Encrypt</th>
+                            <th scope="col">Admin Tools</th>
+                        </tr>
+                    </thead>
+                    {% if reg_users %}
+                    {% for user in reg_users %}
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <td><a href="">{{user.username}}</a></td>
+                                <td><a href="">{{user.email}}</a></td>
+                                <td><a href="">{{user.password}}</a></td>
+                                <td>
+                                    <button formnovalidate name="edit" value="{{user.id}}">Edit</button>
+                                    <button formnovalidate name="delete" value="{{set.id}}">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4"><p class="text-center">No visitors have registered</p></td>
+                        </tr>
+                    {% endif %}
+                    </form>
+                </table>
             </div>
         </div>
         

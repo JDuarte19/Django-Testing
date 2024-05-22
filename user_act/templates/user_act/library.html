@@ -2,26 +2,56 @@
 
 <!DOCTYPE HTML>
 <html>
-    <link rel="stylesheet" href ="styles.css">
+    <link rel="stylesheet" href ="{% static 'css/bootstrap.min.css' %}">
     <head>
-        <title>Library</title>
+        <title>Yser Table</title>
     </head>
 
     <body>
-        <div class = "menu">
-            <ul>
-                <li class = "menu_list">BBDawg</li>
-                <li class = "menu_list">About</li>
-                <li class = "menu_list">Library</li>
-                <li class = "menu_list"><input type="text" placeholder="Seach for Set" name="set_name"></li>
-                <li class = "menu_list">Profile</li>
-            </ul>
-        </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">bbdawg</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor04">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Account info</a>
+                        <a class="dropdown-item" href="#">Library</a>
+                        <a class="dropdown-item" href="#">Admin Panel</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
+                    </div>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                </div>
+            </div>
+        </nav>
 
-        <div class = "padded_body">
-            <div class = "border">
+
                 <table>
-                    <form method="post" action="{% url 'homeapp:library' %}">
+                    <form method="post" action="">
                     {% csrf_token %}
                     <tr><th>Set Name</th></tr>
                     <tr> 
@@ -33,7 +63,7 @@
                     {% if library_list %}
                     {% for set in library_list %}
                     <tr>
-                        <td><a href=" {% url 'homeapp:setpage' set.id %} ">{{set.set_name}}</a></td>
+                        <td><a href="  ">{{set.set_name}}</a></td>
                         <td>
                             <button formnovalidate name="edit" value="{{set.id}}">Edit</button>
                             <button formnovalidate name="delete" value="{{set.id}}">Delete</button></td>
@@ -45,8 +75,7 @@
                 {% else %}
                     <p> No polls are avaiable.</p>
                 {% endif %}
-            </div>
-        </div>
+
     </body>
 
 </html>

@@ -16,5 +16,9 @@ def home(request):
     return render(request, 'user_act/{}'.format(x))
 
 def register(request):
-    x = "test.html"
+    x = "register.html"
     return render(request, 'user_act/{}'.format(x) )
+
+def test(request):
+    x = "test.html"
+    return render(request, 'user_act/{}'.format(x))
