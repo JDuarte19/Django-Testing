@@ -7,6 +7,10 @@ python manage.py runserver
 Current working urls can be found in the homeapp/urls.py:
 * home
 * home/register
+* about
+
+'home/register' -> creates an Account in the SQLite DB with the parameters: username, email, password
+* for testing purposes, 'home/test' demonstrates an admins pov for user accounts, which gives admins power to create and delete any user
 
 Other working url:
 * admnin/
