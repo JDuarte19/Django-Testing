@@ -21,8 +21,36 @@ def home(request):
     return render(request, 'user_act/{}'.format(x))
 
 def about(request):
+    #extends from base.html
     x = "about.html"
     return render(request, 'user_act/{}'.format(x))
+
+def profile(request):
+    #extends base.html
+    x = "profile.html"
+    return render(request, 'user_act/{}'.format(x))
+
+def admin(request):
+    #extends from base.html
+    x = "user_table.html"
+
+    accounts = Account.objects.all()
+    context = {}
+    context['users'] = accounts
+
+    if request.method == "POST":
+        if 'delete' in request.POST:
+            pk = request.POST.get('delete')
+            account = Account.objects.get(id=pk)
+            if account:
+                account.delete()
+                context['success'] = True
+                return render(request, 'user_act/{}'.format(x),context)
+            else:
+                context['success'] = False
+                return render(request, 'user_act/{}'.format(x),context)
+
+    return render(request, 'user_act/{}'.format(x),context)
 
 def login(request):
     #should be used for token authentication 
@@ -30,35 +58,35 @@ def login(request):
     password = request.GET['password']
     account = Account.objects.filter(email=email,password=password).values()
 
-def register(request):
-    x = "register.html"
-    return render(request, 'user_act/{}'.format(x))
+def add_account(request):
+    #extends from base.html
+    #serves as new register page
+    if request.method == "POST":
+        form = AccountForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['user_name']
+            email = form.cleaned_data['email']
+            #pass the password to an encryption function
+            password = form.cleaned_data['password']
+            account = Account(user_name= username, email = email, password = password)
+            account.save()
+            return render(request, 'user_act/add_account.html', {'form':AccountForm(), 'success':True})
+    else:
+        form = AccountForm()
+        return render(request, 'user_act/add_account.html', {'form':AccountForm()})
 
-def reg_account(request):
-    username = request.POST['username']
-    email = request.POST['email']
-    #pass the password to an encryption function
-    password = request.POST['password']
-    account = Account(user_name= username, email = email, password = password)
-    account.save()
-    return HttpResponseRedirect(reverse('home'))
+
 
 def test(request):
-    x = "test.html"
-    accounts = Account.objects.all()
+    x = "user_table.html"
+    #accounts = Account.objects.all()
     context = {}
-    form = AccountForm()
-    context['users'] = accounts
 
-    if request.method == "POST":
-        if 'submit' in request.POST:
-            form = AccountForm(request.POST)
-            form.save()
-        if 'delete' in request.POST:
-            pk = request.POST.get('delete')
-            accounts = Account.objects.get(id=pk)
-            accounts.delete()
+    #if request.method == "POST":
+        #if 'submit' in request.POST:
+        #if 'delete' in request.POST:
+
     
-    context['form'] = form
+    #context['form'] = form
 
     return render(request, 'user_act/{}'.format(x),context)

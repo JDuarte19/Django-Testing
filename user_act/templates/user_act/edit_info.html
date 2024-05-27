@@ -1,0 +1,23 @@
+{%extends "user_act/base.html"%}
+{%block body%}
+    <h3 class = "text-center m-4">Edit account info</h3>
+    {% if success %}
+        <div class = "alert alert-success">Information updated successfully.
+            <a href = "{% url 'admin' %}">Return to table?</a>
+        </div>
+    {% else %}
+        <div class = "row justify-content-center">
+            <div class = "col-4">
+                <div class="card text-white ms-4 me-4 mb-4">
+                    <div class="card-header">
+                        <i class = "fa-solid fa-address-card fa-lg"></i>Change profile attributes:
+                    </div>
+                    <div class="card-body">
+                        Profile Info will go in here
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+{%endblock%}

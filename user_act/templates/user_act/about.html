@@ -1,94 +1,44 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>bb-home</title>
-        <link href = "{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    </head>
-
-    <body class = "d-flex flex-column min-vh-100">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">bbdawg</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor04" aria-controls="navbarColor04" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarColor04">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'home' %}">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Account info</a>
-                        <a class="dropdown-item" href="#">Library</a>
-                        <a class="dropdown-item" href="#">Admin Panel</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'register' %}">Register</a>
-                    </div>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
+{% extends "user_act/base.html"%}
+{% block body%}
+<div class="row">
+    <div class="col-12">
+        <div class="card text-white ms-4 me-4 mb-4">
+            <div class="card-header">About Blogpage</div>
+            <div class  = "mx-auto p-2 w-75">
+                <div class="card-body">
+                    <h4 class="card-title">Background</h4>
+                    <p class="card-text">
+                        I graduated from the University of Houston with a Bachelor of Science. 
+                        My major was computer science and I also minor'd in mathematics.
+                        I specialize in statistics and data analysis using R, and Python to perform data processes to datasets.
+                        At the moment, I am currently seeking full time enployment as a web developer, software developer, python developer or analyst.
+                        <br>
+                    </p>
                 </div>
-            </div>
-        </nav>
 
-        <br>
-        <div class = "container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card text-white ms-4 me-4 mb-4">
-                        <div class="card-header">About Blogpage</div>
-                        <div class  = "mx-auto p-2 w-75">
-                            <div class="card-body">
-                                <h4 class="card-title">Background</h4>
-                                <p class="card-text">
-                                    I graduated from the University of Houston with a Bachelor of Science. 
-                                    My major was computer science and I also minor'd in mathematics.
-                                    I specialize in statistics and data analysis using R, and Python to perform data processes to datasets.
-                                    At the moment, I am currently seeking full time enployment as a web developer, software developer, python developer or analyst.
-                                    <br>
-                                    <br>
-                                    ~ D.
-                                </p>
-                            </div>
-
-                            <div class="card-body">
-                                <h4 class="card-title">Account Form</h4>
-                                <p class="card-text">
-                                    So contray to all expectations but the only working feature is the addition of the account information to the SQLite DB. 
-                                    This means the information that you put into the registration form IS created, but the password hashing and the authentication token for logging in are not operating.
-                                    Why? Because I have not researched how to implement the RESTful api for Django.
-                                    <br>
-                                    <br>
-                                    ~ D.
-                                </p>
-                            </div>
-                            
-                        </div>
-                    </div>
+                <div class="card-body">
+                    <h4 class="card-title">Working urls</h4>
+                    <p class="card-text">
+                        The working pages include: home, about, admin, register
+                        <br>
+                        Pages that need to be worked on include: Features, Account info, Library.
+                        However to get these working, the RESTful API for django framework needs to be installed and implemented to allow for access tokens.
+                        <br>
+                    </p>
                 </div>
+
+                <div class="card-body">
+                    <h4 class="card-title">Account Form</h4>
+                    <p class="card-text">
+                        So contray to all expectations but the only working feature is the addition of the account information to the SQLite DB. 
+                        This means the information that you put into the registration form IS created, but the password hashing and the authentication token for logging in are not operating.
+                        Why? Because I have not researched how to implement the RESTful api for Django.
+                        <br>
+                    </p>
+                </div>
+                
             </div>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
-
-</html>
+    </div>
+</div>
+{%endblock%}

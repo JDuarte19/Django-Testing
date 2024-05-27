@@ -1,0 +1,44 @@
+{% extends "user_act/base.html" %}
+{% block body %}
+
+<h3 class = "text-center m-4">User Information</h3>
+    {% if success %}
+        <div class = "alert alert-success">Account deleted successfully.
+        </div>
+    {% else %}
+    <div class = "alert alert-warning">Account could not be found. Try again.
+    </div>
+    {% endif %}
+<table class="table">
+    <form method="post" action = "">
+    {% csrf_token %}
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">User address</th>
+            <th scope="col">Encrypt</th>
+            <th scope="col">Admin Tools</th>
+        </tr>
+    </thead>
+    {% if users %}
+    {% for user in users %}
+        <tbody class="table-group-divider">
+            <tr>
+                <td><a href="">{{user.user_name}}</a></td>
+                <td><a href="">{{user.email}}</a></td>
+                <td><a href="">{{user.password}}</a></td>
+                <td>
+                    <button formnovalidate name="edit" value="{{user.id}}">Edit</button>
+                    <button formnovalidate name="delete" value="{{user.id}}">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="4"><p class="text-center">No visitors have registered</p></td>
+        </tr>
+    {% endif %}
+    </form>
+</table>
+{% endblock %}
