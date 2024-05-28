@@ -10,14 +10,18 @@
             <div class = "col-4">
                 <div class="card text-white ms-4 me-4 mb-4">
                     <div class="card-header">
-                        <i class = "fa-solid fa-address-card fa-lg"></i>Change profile attributes:
+                        Update Account Info
                     </div>
                     <div class="card-body">
-                        Profile Info will go in here
+                        <form action = "" method = "POST">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button type="submit" class = "btn btn-primary"> Update</button>
+                            <a href="{% url 'admin'%}" class = "btn btn-secondary">Cancel</a>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     {% endif %}
 {% endblock %}
-{%endblock%}

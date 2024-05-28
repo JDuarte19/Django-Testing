@@ -13,11 +13,19 @@ Function based views
 
 Class based views
 
+# using https://fontawesome.com/search?o=r&c=editing for icons
+# using https://bootswatch.com/solar/ for css and js
+# using https://www.youtube.com/watch?v=EUMpUUXKvP0&t=4953s as a tutorial for Django use
+
 
 """
 # request is the http request a user used to access a webpage
 def home(request):
     x = "home.html"
+    return render(request, 'user_act/{}'.format(x))
+
+def features(request):
+    x = "features.html"
     return render(request, 'user_act/{}'.format(x))
 
 def about(request):
@@ -37,18 +45,6 @@ def admin(request):
     accounts = Account.objects.all()
     context = {}
     context['users'] = accounts
-
-    if request.method == "POST":
-        if 'delete' in request.POST:
-            pk = request.POST.get('delete')
-            account = Account.objects.get(id=pk)
-            if account:
-                account.delete()
-                context['success'] = True
-                return render(request, 'user_act/{}'.format(x),context)
-            else:
-                context['success'] = False
-                return render(request, 'user_act/{}'.format(x),context)
 
     return render(request, 'user_act/{}'.format(x),context)
 
@@ -75,10 +71,36 @@ def add_account(request):
         form = AccountForm()
         return render(request, 'user_act/add_account.html', {'form':AccountForm()})
 
+def view_account(request,id):
+    account = Account.objects.get(pk=id)
+    return HttpResponseRedirect(reverse('admin'))
+
+def edit_info(request,id):
+    if request.method=="POST":
+        account = Account.objects.get(pk=id)
+        form = AccountForm(request.POST, instance=account)
+        if form.is_valid():
+            form.save()
+            return render(request, 'user_act/edit_info.html', {
+                'form':form,
+                'success':True
+            })
+    else:
+        account = Account.objects.get(pk=id)
+        form=AccountForm(instance=account)
+        return render(request, 'user_act/edit_info.html',{'form':form})
+    
+def delete(request,id):
+    if request.method == "POST":
+        account = Account.objects.get(pk=id)
+        account.delete()
+
+    return HttpResponseRedirect(reverse('admin'))
+
 
 
 def test(request):
-    x = "user_table.html"
+    x = "test.html"
     #accounts = Account.objects.all()
     context = {}
 
